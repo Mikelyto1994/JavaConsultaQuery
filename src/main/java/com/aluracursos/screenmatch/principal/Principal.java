@@ -1,17 +1,30 @@
 package com.aluracursos.screenmatch.principal;
 
+<<<<<<< HEAD
 import com.aluracursos.screenmatch.model.*;
 import com.aluracursos.screenmatch.repository.SerieRepository;
 import com.aluracursos.screenmatch.service.ConsumoAPI;
 import com.aluracursos.screenmatch.service.ConvierteDatos;
 
 import java.util.*;
+=======
+import com.aluracursos.screenmatch.model.DatosSerie;
+import com.aluracursos.screenmatch.model.DatosTemporadas;
+import com.aluracursos.screenmatch.model.Serie;
+import com.aluracursos.screenmatch.service.ConsumoAPI;
+import com.aluracursos.screenmatch.service.ConvierteDatos;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
 import java.util.stream.Collectors;
 
 public class Principal {
     private Scanner teclado = new Scanner(System.in);
     private ConsumoAPI consumoApi = new ConsumoAPI();
     private final String URL_BASE = "https://www.omdbapi.com/?t=";
+<<<<<<< HEAD
     private final String API_KEY = "TU-APIKEY-OMDB";
     private ConvierteDatos conversor = new ConvierteDatos();
     private List<DatosSerie> datosSeries = new ArrayList<>();
@@ -22,6 +35,11 @@ public class Principal {
     public Principal(SerieRepository repository) {
         this.repositorio = repository;
     }
+=======
+    private final String API_KEY = "&apikey=4a61a94a";
+    private ConvierteDatos conversor = new ConvierteDatos();
+    private List<DatosSerie> datosSeries = new ArrayList<>();
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
 
     public void muestraElMenu() {
         var opcion = -1;
@@ -30,12 +48,15 @@ public class Principal {
                     1 - Buscar series 
                     2 - Buscar episodios
                     3 - Mostrar series buscadas
+<<<<<<< HEAD
                     4 - Buscar series por titulo
                     5 - Top 5 mejores series
                     6 - Buscar Series por categoría
                     7 - filtrar series por temporadas y evaluación
                     8 - Buscar episodios por titulo
                     9 - Top 5 episodios por Serie
+=======
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
                                   
                     0 - Salir
                     """;
@@ -53,6 +74,7 @@ public class Principal {
                 case 3:
                     mostrarSeriesBuscadas();
                     break;
+<<<<<<< HEAD
                 case 4:
                     buscarSeriesPorTitulo();
                     break;
@@ -71,6 +93,8 @@ public class Principal {
                 case 9:
                     buscarTop5Episodios();
                     break;
+=======
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
                 case 0:
                     System.out.println("Cerrando la aplicación...");
                     break;
@@ -90,6 +114,7 @@ public class Principal {
         return datos;
     }
     private void buscarEpisodioPorSerie() {
+<<<<<<< HEAD
         mostrarSeriesBuscadas();
         System.out.println("Escribe el nombre de la serie de la cual quieres ver los episodios");
         var nombreSerie = teclado.nextLine();
@@ -126,16 +151,39 @@ public class Principal {
         Serie serie = new Serie(datos);
         repositorio.save(serie);
         //datosSeries.add(datos);
+=======
+        DatosSerie datosSerie = getDatosSerie();
+        List<DatosTemporadas> temporadas = new ArrayList<>();
+
+        for (int i = 1; i <= datosSerie.totalTemporadas(); i++) {
+            var json = consumoApi.obtenerDatos(URL_BASE + datosSerie.titulo().replace(" ", "+") + "&season=" + i + API_KEY);
+            DatosTemporadas datosTemporada = conversor.obtenerDatos(json, DatosTemporadas.class);
+            temporadas.add(datosTemporada);
+        }
+        temporadas.forEach(System.out::println);
+    }
+    private void buscarSerieWeb() {
+        DatosSerie datos = getDatosSerie();
+        datosSeries.add(datos);
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
         System.out.println(datos);
     }
 
     private void mostrarSeriesBuscadas() {
+<<<<<<< HEAD
         series = repositorio.findAll();
+=======
+        List<Serie> series = new ArrayList<>();
+        series = datosSeries.stream()
+                .map(d -> new Serie(d))
+                .collect(Collectors.toList());
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
 
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);
     }
+<<<<<<< HEAD
 
     private void buscarSeriesPorTitulo(){
         System.out.println("Escribe el nombre de la serie que deseas buscar");
@@ -197,5 +245,7 @@ public class Principal {
 
         }
     }
+=======
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
 }
 

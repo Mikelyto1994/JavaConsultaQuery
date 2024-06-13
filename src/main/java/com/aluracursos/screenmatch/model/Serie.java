@@ -1,5 +1,6 @@
 package com.aluracursos.screenmatch.model;
 
+<<<<<<< HEAD
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,10 +13,25 @@ public class Serie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @Column(unique = true)
+=======
+import com.aluracursos.screenmatch.service.ConsultaChatGPT;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import java.util.OptionalDouble;
+@Entity
+@Table(name="Series")
+public class Serie {
+    @Id
+    private Long Id;
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
     private String titulo;
     private Integer totalTemporadas;
     private Double evaluacion;
     private String poster;
+<<<<<<< HEAD
     @Enumerated(EnumType.STRING)
     private Categoria genero;
     private String actores;
@@ -24,6 +40,11 @@ public class Serie {
     private List<Episodio> episodios;
 
     public Serie(){}
+=======
+    private Categoria genero;
+    private String actores;
+    private String sinopsis;
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
 
     public Serie(DatosSerie datosSerie){
         this.titulo = datosSerie.titulo();
@@ -32,7 +53,11 @@ public class Serie {
         this.poster = datosSerie.poster();
         this.genero = Categoria.fromString(datosSerie.genero().split(",")[0].trim());
         this.actores = datosSerie.actores();
+<<<<<<< HEAD
         this.sinopsis = datosSerie.sinopsis();
+=======
+        this.sinopsis = datosSerie.sinopsis() ;
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
     }
 
     @Override
@@ -43,6 +68,7 @@ public class Serie {
                 ", evaluacion=" + evaluacion +
                 ", poster='" + poster + '\'' +
                 ", actores='" + actores + '\'' +
+<<<<<<< HEAD
                 ", sinopsis='" + sinopsis + '\'' +
                 ", episodios='" + episodios + '\'';
 
@@ -63,6 +89,9 @@ public class Serie {
 
     public void setId(Long id) {
         Id = id;
+=======
+                ", sinopsis='" + sinopsis + '\'';
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
     }
 
     public String getTitulo() {

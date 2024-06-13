@@ -1,5 +1,6 @@
 package com.aluracursos.screenmatch.model;
 
+<<<<<<< HEAD
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -10,15 +11,24 @@ public class Episodio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+=======
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
+public class Episodio {
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
     private Integer temporada;
     private String titulo;
     private Integer numeroEpisodio;
     private Double evaluacion;
     private LocalDate fechaDeLanzamiento;
+<<<<<<< HEAD
     @ManyToOne
     private Serie serie;
 
     public Episodio(){}
+=======
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
 
     public Episodio(Integer numero, DatosEpisodio d) {
         this.temporada = numero;
@@ -37,6 +47,7 @@ public class Episodio {
 
     }
 
+<<<<<<< HEAD
     public Serie getSerie() {
         return serie;
     }
@@ -45,6 +56,8 @@ public class Episodio {
         this.serie = serie;
     }
 
+=======
+>>>>>>> fd6bc0f039112b771cbb8c2f2a2cbb8c1c6dbeb9
     public Integer getTemporada() {
         return temporada;
     }
